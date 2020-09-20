@@ -5,15 +5,18 @@ import os
 import sys
 import argparse 
 import time
-import src.data_lowlight
 import numpy as np
 import glob
 
-from src.loss import *
+from src import data_lowlight
+from src import loss
 from src.model import DCE_x
 from tensorflow.keras import Model, Input
 from tensorflow.keras.layers import Concatenate, Conv2D
 from PIL import Image
+
+# from src.loss import *
+# import src.data_lowlight
 
 
 def progress(epoch, trained_sample ,total_sample, bar_length=25, total_loss=0, message=""):
