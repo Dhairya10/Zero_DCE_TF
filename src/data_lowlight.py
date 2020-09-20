@@ -8,6 +8,7 @@ from PIL import Image
 
 def populate_train_list(lowlight_images_path):
     # image_list_lowlight = glob.glob(lowlight_images_path + "*.jpg")
+    image_list_lowlight = []
 
     extensions=('*.png','*.jpg','*.jpeg', '*.JPG','*.JPEG')
 
