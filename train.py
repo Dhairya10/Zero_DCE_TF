@@ -9,13 +9,14 @@ import numpy as np
 import glob
 
 from src import data_lowlight
-# from src import loss
 from src.model import DCE_x
+from src.loss import *
+
 from tensorflow.keras import Model, Input
 from tensorflow.keras.layers import Concatenate, Conv2D
 from PIL import Image
 
-from src.loss import *
+
 # import src.data_lowlight
 
 
