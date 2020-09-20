@@ -4,6 +4,7 @@ import keras.backend as K
 import random
 import glob
 import os
+from tqdm import tqdm
 
 from PIL import Image
 
