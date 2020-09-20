@@ -82,8 +82,8 @@ def train(config):
 
     save_path = os.path.join(os.getcwd(),'saved_model/my_model')
 
-	if not os.path.exists(save_path):
-		os.makedirs(save_path)
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
     
     print("Start training ...")
     for epoch in range(config.num_epochs):
