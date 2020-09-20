@@ -121,7 +121,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 
 	# Input Parameters
-	parser.add_argument('--lowlight_images_path', type=str, default="/home/ubuntu/Zero_DCE_TF/dataset/")
+	parser.add_argument('--lowlight_images_path', type=str, default="/home/ubuntu/Zero_DCE_TF/dataset/train_data/")
 	parser.add_argument('--lr', type=float, default=0.0001)
 	parser.add_argument('--gpu', type=int, default=0)
 	parser.add_argument('--grad_clip_norm', type=float, default=0.1)
