@@ -8,12 +8,18 @@ from PIL import Image
 
 def populate_train_list(lowlight_images_path):
     # image_list_lowlight = glob.glob(lowlight_images_path + "*.jpg")
-    image_list_lowlight = []
 
     extensions=('*.png','*.jpg','*.jpeg', '*.JPG','*.JPEG')
+    image_list_lowlight = []
 
-    for ext in extensions:
-        image_list_lowlight.extend(glob.glob(ext))
+    sub_directories = os.listdir(lowlight_images_path)
+
+    for sub_directory in tqdm(sub_directories):
+        print(sub_directory)
+        path = os.path.join(lowlight_images_path,sub_directory)
+        os.chdir(path)
+        for ext in extensions:
+            image_list_lowlight.extend(glob.glob(ext))
 
     train_list = image_list_lowlight
 
