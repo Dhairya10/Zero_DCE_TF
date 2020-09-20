@@ -78,6 +78,12 @@ def train(config):
     x_r = Conv2D(24, (3,3), strides=(1,1), activation='tanh', padding='same')(int_con3)
 
     model = Model(inputs=input_img, outputs = x_r)
+    total_loss = 0
+
+    save_path = os.path.join(os.getcwd(),'saved_model/my_model')
+
+	if not os.path.exists(save_path):
+		os.makedirs(save_path)
     
     print("Start training ...")
     for epoch in range(config.num_epochs):
@@ -99,7 +105,13 @@ def train(config):
                 loss_col = 5*tf.reduce_mean(L_color(enhance_image))
                 loss_exp = 10*tf.reduce_mean(L_exp(enhance_image, mean_val=0.6))
 
-                total_loss = loss_TV + loss_spa + loss_col + loss_exp
+                # total_loss = loss_TV + loss_spa + loss_col + loss_exp
+                current_total_loss = loss_TV + loss_spa + loss_col + loss_exp
+
+                if current_total_loss < total_loss :
+                    model.save(save_path) 
+
+                total_loss = current_total_loss
 
             grads = tape.gradient(total_loss, model.trainable_weights)
 
@@ -111,7 +123,7 @@ def train(config):
 
             if (iteration+1) % config.checkpoint_iter == 0:
                 progress(epoch+1, (iteration+1), len(train_dataset), total_loss=total_loss, message=' ----- saved weight for epoch ' + str(epoch+1) + ' iter ' + str(iteration+1))
-                model.save_weights(os.path.join(config.checkpoints_folder, "ep_"+str(epoch+1)+"_it_"+str(iteration+1)+".h5"))
+                # model.save_weights(os.path.join(config.checkpoints_folder, "ep_"+str(epoch+1)+"_it_"+str(iteration+1)+".h5"))
 
 
 
@@ -139,6 +151,5 @@ if __name__ == "__main__":
 
 	if not os.path.exists(config.checkpoints_folder):
 		os.mkdir(config.checkpoints_folder)
-
 
 	train(config)
