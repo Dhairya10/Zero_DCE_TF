@@ -23,7 +23,7 @@ def progress(epoch, trained_sample ,total_sample, bar_length=25, total_loss=0, m
     percent = float(trained_sample) / total_sample
     hashes = '#' * int(round(percent * bar_length))
     spaces = ' ' * (bar_length - len(hashes))
-    sys.stdout.write("\rEpoch {0}: [{1}] {2}%  ----- Loss: {3}".format(epoch, hashes + spaces, int(round(percent * 100)), float(total_loss)) + message)
+    sys.stdout.write("\rEpoch {0}: [{1}] {2}%  ----- Loss: {3}".format(epoch, hashes + spaces, int(round(percent * 100)), float(total_loss)))
     sys.stdout.flush()
 
 def eval(model):
