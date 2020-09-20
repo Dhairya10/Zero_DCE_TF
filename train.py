@@ -5,12 +5,12 @@ import os
 import sys
 import argparse 
 import time
-import data_lowlight
+import src.data_lowlight
 import numpy as np
 import glob
 
 from src.loss import *
-from model import DCE_x
+from src.model import DCE_x
 from tensorflow.keras import Model, Input
 from tensorflow.keras.layers import Concatenate, Conv2D
 from PIL import Image
