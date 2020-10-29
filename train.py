@@ -16,8 +16,11 @@ from tensorflow.keras import Model, Input
 from tensorflow.keras.layers import Concatenate, Conv2D
 from PIL import Image
 
+os.environ['TF_FORCE_GPU_ALLOW_GROWTH'] = 'true'
 
-# import src.data_lowlight
+# TODO:
+# Setup dvc with GDrive 
+# dvc remote add myremote gdrive://folder_id
 
 
 def progress(epoch, trained_sample ,total_sample, bar_length=25, total_loss=0, message=""):
@@ -81,7 +84,7 @@ def train(config):
     model = Model(inputs=input_img, outputs = x_r)
     total_loss = 0
 
-    save_path = os.path.join(os.getcwd(),'saved_model/my_model')
+    save_path = os.path.join(os.getcwd(),'saved_model')
 
     if not os.path.exists(save_path):
         os.makedirs(save_path)
@@ -134,7 +137,7 @@ if __name__ == "__main__":
 	parser = argparse.ArgumentParser()
 
 	# Input Parameters
-	parser.add_argument('--lowlight_images_path', type=str, default="/home/ubuntu/Zero_DCE_TF/dataset/train_data/")
+	parser.add_argument('--lowlight_images_path', type=str, default="/home/alpha/Documents/merged_dataset/")
 	parser.add_argument('--lr', type=float, default=0.0001)
 	parser.add_argument('--gpu', type=int, default=0)
 	parser.add_argument('--grad_clip_norm', type=float, default=0.1)
